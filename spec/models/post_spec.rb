@@ -8,5 +8,20 @@ RSpec.describe Post, type: :model do
 	it "has a valid factory" do 
 		expect(@post).to be_valid
 	end
+
+  it "is invalid without a title" do
+    @post.title = nil
+    expect(@post).not_to be_valid
+  end
+
+  it "is invalid without a body" do
+    @post.body = nil
+    expect(@post).not_to be_valid
+  end
+
+  it "is invalid if title is over 140 characters" do
+    @post.title = 'a'*141
+    expect(@post).not_to be_valid
+  end
   
 end
