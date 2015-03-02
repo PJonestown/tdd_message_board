@@ -23,5 +23,10 @@ RSpec.describe Post, type: :model do
     @post.title = 'a'*141
     expect(@post).not_to be_valid
   end
+
+  it "is ivalid if body over 5000 characters" do
+    @post.body = 'a' * 5001
+    expect(@post).not_to be_valid
+  end
   
 end
