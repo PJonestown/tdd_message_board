@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe 'the posts index', type: :feature do
-  let(:post) {FactoryGirl.create(:post)}
+
+   post = FactoryGirl.create(:post) 
 
   before(:each) do
     visit posts_path
@@ -17,5 +18,14 @@ describe 'the posts index', type: :feature do
     page.click_button('Create Post')
     expect(current_path).to eq(posts_path)
     expect(page).to have_content('foobar')
+  end
+
+  it 'sends user to post page when title is clicked' do
+    expect(page).to have_link(post.title, href: post_path(post))
+
+  end
+
+  xit 'lists shows the user who created the post' do
+    expect(page).to have_content(post.title)
   end
 end
