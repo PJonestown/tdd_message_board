@@ -28,5 +28,10 @@ RSpec.describe Post, type: :model do
     @post.body = 'a' * 5001
     expect(@post).not_to be_valid
   end
+
+  it "must have a reference to user" do
+    @post.user_id = nil
+    expect(@post).not_to be_valid
+  end
   
 end
