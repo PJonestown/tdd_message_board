@@ -26,6 +26,6 @@ describe 'the posts index', type: :feature do
   end
 
   xit 'lists shows the user who created the post' do
-    expect(page).to have_content(post.title)
+    expect(page).to have_content(post.user)
   end
 end
