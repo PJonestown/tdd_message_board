@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'the posts index', type: :feature do
 
-   post = FactoryGirl.create(:post) 
+  post = FactoryGirl.create(:post)
 
   before(:each) do
     visit posts_path
@@ -17,7 +17,7 @@ describe 'the posts index', type: :feature do
     page.fill_in('Body', with: 'barfoo')
     page.click_button('Create Post')
     expect(current_path).to eq(posts_path)
-    expect(page).to have_content('foobar')
+    expect(page).to have_content('barfoo')
   end
 
   it 'sends user to post page when title is clicked' do
