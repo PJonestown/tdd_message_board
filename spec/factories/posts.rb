@@ -4,4 +4,8 @@ FactoryGirl.define do
     body            "Big ol body"
     user_id         1
   end
+
+  factory :invalid_post, parent: :post do |f|
+    f.title         nil
+  end
 end

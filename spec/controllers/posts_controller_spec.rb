@@ -8,25 +8,20 @@ RSpec.describe PostsController, type: :controller do
   #DatabaseCleaner.clean_with(:truncation)
 
   let(:valid_attributes) {
-    {
-     title: 'foo',
-     body:  'bar'
-    }
+    
+     FactoryGirl.attributes_for(:post)
+    
   }
 
   let(:invalid_attributes) {
-    {
-      title: nil,
-      body:  nil
-    }
+
+    FactoryGirl.attributes_for(:invalid_post)
+
   }
 
   let(:valid_session) { {} }
 
   describe "GET #index" do
-    before do
-
-    end
 
 
 ############################ todo #############################################
@@ -41,11 +36,17 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:posts)).to eq([post])
     
      end
+
+    xit "populates an array of posts" do
+      post = FactoryGirl.create(:user)
+      get :index
+      assigns(:posts).should eq([post])
+    end
   end
 
   describe "GET #show" do
     it "assigns the requested post as @post" do
-      post = Post.create! valid_attributes
+      post = FactoryGirl.create(:user)
       get :show, {:id => post.to_param}, valid_session
       expect(assigns(:post)).to eq(post)
     end
@@ -60,7 +61,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested post as @post" do
-      post = Post.create! valid_attributes
+      post = FactoryGirl.create(:user)
       get :edit, {:id => post.to_param}, valid_session
       expect(assigns(:post)).to eq(post)
     end
