@@ -7,4 +7,16 @@ FactoryGirl.define do
     
   end
 
+  factory :invalid_user, parent: :user do
+
+    email                     nil
+
+  end
+
+  factory :updated_user, parent: :user do
+
+    email                     "new@email.com"
+
+  end
+
 end
