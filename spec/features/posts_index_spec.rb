@@ -12,12 +12,18 @@ describe 'the posts index', type: :feature do
     expect(page).to have_button('Create Post')
   end
 
+
+
+  #todo
+  #this test should fail
+  #First find out why it isn't
+  #Then fix
   it 'creates a new post' do
     page.fill_in('Title', with: 'foobar')
-    page.fill_in('Body', with: 'barfoo')
+    page.fill_in('Body', with: 'barfoho')
     page.click_button('Create Post')
-    expect(current_path).to eq(posts_path)
-    expect(page).to have_content('barfoo')
+    expect(current_path).to eq(posts_path) #should fail here
+    expect(page).to have_content('barfoho')
   end
 
   it 'sends user to post page when title is clicked' do
