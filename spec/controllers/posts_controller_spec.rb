@@ -38,7 +38,7 @@ RSpec.describe PostsController, type: :controller do
      end
 
     xit "populates an array of posts" do
-      post = FactoryGirl.create(:user)
+      post = FactoryGirl.create(:post)
       get :index
       assigns(:posts).should eq([post])
     end
@@ -116,7 +116,9 @@ RSpec.describe PostsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
+
         FactoryGirl.attributes_for(:updated_post)
+
       }
 
       it "updates the requested post" do
