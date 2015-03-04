@@ -24,24 +24,19 @@ RSpec.describe PostsController, type: :controller do
   describe "GET #index" do
 
 
-############################ todo #############################################
-    #Fix this test. I think the problem is that there's extra records in the
-    #testing db (my facotrygirl.create) 
-    #Need to find out how to delete those (database_cleaner?)
-    #Or not create them at all in the first place
+   
+    let(:user) {
+      FactoryGirl.create(:user)
+    }
  
-   xit "assigns all posts as @posts" do
+   it "assigns all posts as @posts" do
+      sign_in user
       post = Post.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:posts)).to eq([post])
     
      end
 
-    xit "populates an array of posts" do
-      post = FactoryGirl.create(:post)
-      get :index
-      assigns(:posts).should eq([post])
-    end
   end
 
   describe "GET #show" do
