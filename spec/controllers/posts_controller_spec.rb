@@ -48,7 +48,13 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "GET #new" do
+
+    let(:user) {
+      FactoryGirl.create(:user)
+    }
+
     it "assigns a new post as @post" do
+      sign_in user
       get :new, {}, valid_session
       expect(assigns(:post)).to be_a_new(Post)
     end
