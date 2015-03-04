@@ -8,4 +8,8 @@ FactoryGirl.define do
   factory :invalid_post, parent: :post do |f|
     f.title         nil
   end
+
+  factory :updated_post, parent: :post do |f|
+    f.title         'New Title'
+  end
 end

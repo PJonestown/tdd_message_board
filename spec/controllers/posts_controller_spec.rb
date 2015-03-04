@@ -103,18 +103,14 @@ RSpec.describe PostsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        {
-          title:  'bar',
-          body:   'foo'
-        }
+        FactoryGirl.attributes_for(:updated_post)
       }
 
       it "updates the requested post" do
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => new_attributes}, valid_session
         post.reload
-        expect(post.title).to eq('bar')
-        expect(post.body).to eq('foo')
+        expect(post.title).to eq('New Title')
       end
 
       it "assigns the requested post as @post" do
