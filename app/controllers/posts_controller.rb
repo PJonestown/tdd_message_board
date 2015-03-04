@@ -61,10 +61,19 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+    #@post.destroy
+    #user = current_user.posts.find(params[:id])
+    #@post.destroy
+    if @post.user == current_user
+      @post.destroy
+    
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path
+      flash[:danger] = "You don't have permission to do this"
     end
   end
 

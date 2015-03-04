@@ -195,12 +195,27 @@ RSpec.describe PostsController, type: :controller do
     let(:user) {
       FactoryGirl.create(:user)
     }
-    it "destroys the requested post" do
+
+    let(:other_user) {
+      FactoryGirl.create(:updated_user)
+    }
+
+    it "destroys the requested post as correct user" do
       sign_in user
       post = Post.create! valid_attributes
       expect {
         delete :destroy, {:id => post.to_param}, valid_session
       }.to change(Post, :count).by(-1)
+    end
+
+    it "does not destroy requested post as incorrect user" do
+      sign_in user
+      post = Post.create! valid_attributes
+      sign_out user
+      sign_in other_user
+      expect {
+        delete :destroy, {:id => post.to_param}, valid_session
+      }.to change(Post, :count).by(0)
     end
 
     it "redirects to the posts list" do
