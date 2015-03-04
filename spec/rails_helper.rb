@@ -27,19 +27,29 @@ require 'capybara/rails'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+
+  config.include Devise::TestHelpers, type: :controller
   
   ################## Database_cleaner ######################################
 
-  #config.before(:suite) do
-   # DatabaseCleaner.strategy = :transaction
-    #DatabaseCleaner.clean_with(:truncation)
-  #end
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
   #config.around(:each) do |example|
    # DatabaseCleaner.cleaning do
     #  example.run
     #end
   #end
+  #
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 
   ##########################################################################
 

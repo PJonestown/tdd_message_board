@@ -15,6 +15,8 @@ describe 'the posts index', type: :feature do
 
 
   it 'Signs up new user and creates new post' do
+    #todo
+    #this should click a button for sign up
     visit new_user_registration_path
     page.fill_in('Email', with: 'test@gmail.com')
     page.fill_in('Password', with: 'mypassword')

@@ -82,7 +82,15 @@ RSpec.describe PostsController, type: :controller do
         }
       } 
 
+      #@request.env["devise.mapping"] = Devise.mappings[:user]
+      #get :new
+
+      #@user = FactoryGirl.create(:user)
+
+
       it "creates a new Post" do
+
+        sign_in user
         expect {
           post :create, {:post => valid_attributes}, valid_session
         }.to change(Post, :count).by(1)
@@ -94,7 +102,7 @@ RSpec.describe PostsController, type: :controller do
         expect(assigns(:post)).to be_persisted
       end
 
-      it "redirects to the created post" do
+      it "redirects to the posts path" do
         post :create, {:post => valid_attributes}, valid_session
         expect(response).to redirect_to(posts_path)
       end
