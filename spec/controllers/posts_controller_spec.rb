@@ -97,24 +97,33 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "assigns a newly created post as @post" do
+        sign_in user
         post :create, {:post => valid_attributes}, valid_session
         expect(assigns(:post)).to be_a(Post)
         expect(assigns(:post)).to be_persisted
       end
 
       it "redirects to the posts path" do
+        sign_in user
         post :create, {:post => valid_attributes}, valid_session
         expect(response).to redirect_to(posts_path)
       end
     end
 
     context "with invalid params" do
+
+      let(:user) {
+        FactoryGirl.create(:user)
+      }
+
       it "assigns a newly created but unsaved post as @post" do
+        sign_in user
         post :create, {:post => invalid_attributes}, valid_session
         expect(assigns(:post)).to be_a_new(Post)
       end
 
       it "re-renders the 'new' template" do
+        sign_in user
         post :create, {:post => invalid_attributes}, valid_session
         expect(response).to render_template("new")
       end
