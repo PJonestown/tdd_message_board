@@ -14,15 +14,11 @@ describe 'the posts index', type: :feature do
 
 
 
-  #todo
-  #this test should fail
-  #First find out why it isn't
-  #Then fix
   it 'creates a new post' do
     page.fill_in('Title', with: 'foobar')
     page.fill_in('Body', with: 'barfoho')
     page.click_button('Create Post')
-    expect(current_path).to eq(posts_path) #should fail here
+    expect(page).not_to have_content('error')
     expect(page).to have_content('barfoho')
   end
 
