@@ -15,7 +15,21 @@ describe 'the posts index', type: :feature do
     expect(page).to have_button('Create Post')
   end
 
+  #todo
+  #use contexts and describes
 
+  it 'redirects user to sign_up page when creating a post w/o log in' do
+    page.fill_in('Title', with: 'Great Title')
+    page.fill_in('Body', with: 'Nice body!')
+    page.click_button('Create Post')
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_link(
+      'Sign up',
+      href: new_user_registration_path
+    )
+
+  end
 
   it 'Signs up new user and creates new post' do
     #todo
