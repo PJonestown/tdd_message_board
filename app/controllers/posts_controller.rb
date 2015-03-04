@@ -14,8 +14,13 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/new
+  # todo
+  # I can probably get rid of the user_id part
+  # wait for integration test pass
   def new
-    @post = Post.new
+    @post = Post.new(
+      user_id: params[:user_id]
+    )
   end
 
   # GET /posts/1/edit
@@ -25,7 +30,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.build(post_params)
 
     respond_to do |format|
       if @post.save

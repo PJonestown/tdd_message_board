@@ -14,10 +14,17 @@ describe 'the posts index', type: :feature do
 
 
 
-  it 'creates a new post' do
+  it 'Signs up new user and creates new post' do
+    visit new_user_registration_path
+    page.fill_in('Email', with: 'test@gmail.com')
+    page.fill_in('Password', with: 'mypassword')
+    page.fill_in('Password confirmation', with: 'mypassword')
+    page.click_button('Sign up')
+
     page.fill_in('Title', with: 'foobar')
     page.fill_in('Body', with: 'barfoho')
     page.click_button('Create Post')
+    expect(current_path).to eq(posts_path)
     expect(page).not_to have_content('error')
     expect(page).to have_content('barfoho')
   end

@@ -19,6 +19,11 @@
     <%= f.label :body %><br>
     <%= f.text_area :body %>
   </div>
+  <!-- todo 
+        should be able to delete this I think -->
+  <div class="field">
+    <%= f.hidden_field :user_id %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
