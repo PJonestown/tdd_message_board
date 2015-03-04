@@ -2,10 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "posts/show", type: :view do
   before(:each) do
-    @post = assign(:post, Post.create!(
-      :title => "Title",
-      :body => "Body"
-    ))
+    
+    @post = FactoryGirl.create(:post)
+
   end
 
   it "renders attributes in <p>" do
