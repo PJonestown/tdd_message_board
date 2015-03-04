@@ -46,7 +46,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #show" do
     it "assigns the requested post as @post" do
-      post = FactoryGirl.create(:user)
+      post = FactoryGirl.create(:post)
       get :show, {:id => post.to_param}, valid_session
       expect(assigns(:post)).to eq(post)
     end
@@ -61,7 +61,7 @@ RSpec.describe PostsController, type: :controller do
 
   describe "GET #edit" do
     it "assigns the requested post as @post" do
-      post = FactoryGirl.create(:user)
+      post = FactoryGirl.create(:post)
       get :edit, {:id => post.to_param}, valid_session
       expect(assigns(:post)).to eq(post)
     end
@@ -69,6 +69,19 @@ RSpec.describe PostsController, type: :controller do
 
   describe "POST #create" do
     context "with valid params" do
+      
+      let(:user) {
+        FactoryGirl.create(:user)
+      }
+
+      let(:valid_attributes) {
+        {
+         title: 'I wish I could make this a factory',
+         body: 'I probably could',
+         user_id: user.id
+        }
+      } 
+
       it "creates a new Post" do
         expect {
           post :create, {:post => valid_attributes}, valid_session
