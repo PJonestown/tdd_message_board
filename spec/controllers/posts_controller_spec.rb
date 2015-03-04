@@ -133,7 +133,12 @@ RSpec.describe PostsController, type: :controller do
 
       }
 
+      let(:user) {
+        FactoryGirl.create(:user)
+      }
+
       it "updates the requested post" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => new_attributes}, valid_session
         post.reload
@@ -141,12 +146,14 @@ RSpec.describe PostsController, type: :controller do
       end
 
       it "assigns the requested post as @post" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => valid_attributes}, valid_session
         expect(assigns(:post)).to eq(post)
       end
 
       it "redirects to the post" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => valid_attributes}, valid_session
         expect(response).to redirect_to(post)
@@ -154,13 +161,22 @@ RSpec.describe PostsController, type: :controller do
     end
 
     context "with invalid params" do
+
+      let(:user) {
+        FactoryGirl.create(:user)
+      }
+      
       it "assigns the post as @post" do
+        sign_in user
+        
         post = Post.create! valid_attributes
+        
         put :update, {:id => post.to_param, :post => invalid_attributes}, valid_session
         expect(assigns(:post)).to eq(post)
       end
 
       it "re-renders the 'edit' template" do
+        sign_in user
         post = Post.create! valid_attributes
         put :update, {:id => post.to_param, :post => invalid_attributes}, valid_session
         expect(response).to render_template("edit")
