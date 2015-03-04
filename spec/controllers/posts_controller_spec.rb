@@ -185,7 +185,12 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+
+    let(:user) {
+      FactoryGirl.create(:user)
+    }
     it "destroys the requested post" do
+      sign_in user
       post = Post.create! valid_attributes
       expect {
         delete :destroy, {:id => post.to_param}, valid_session
@@ -193,6 +198,7 @@ RSpec.describe PostsController, type: :controller do
     end
 
     it "redirects to the posts list" do
+      sign_in user
       post = Post.create! valid_attributes
       delete :destroy, {:id => post.to_param}, valid_session
       expect(response).to redirect_to(posts_url)
