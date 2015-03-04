@@ -222,7 +222,7 @@ RSpec.describe PostsController, type: :controller do
       sign_in user
       post = Post.create! valid_attributes
       delete :destroy, {:id => post.to_param}, valid_session
-      expect(response).to redirect_to(posts_url)
+      expect(response).to redirect_to(root_path)
     end
   end
 
