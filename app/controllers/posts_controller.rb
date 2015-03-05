@@ -72,7 +72,8 @@ class PostsController < ApplicationController
       end
     else
       redirect_to root_path
-      flash[:danger] = "You don't have permission to do this"
+      #flash[:danger] = "You don't have permission to do this"
+      flash[:alert] = "You don't have permission to do this"
     end
   end
 
