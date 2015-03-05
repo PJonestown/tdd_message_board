@@ -28,4 +28,22 @@ describe 'editing a post', type: :feature do
     end
   end
 
+  describe 'without ownership' do
+
+    before(:each) do
+      click_link('Sign out')
+      
+      page.click_link('Sign up')
+      page.fill_in('Email', with: 'first@gmail.com')
+      page.fill_in('Password', with: 'foobarfoo')
+      page.fill_in('Password confirmation', with: 'foobarfoo')
+      page.click_button('Sign up')
+    end
+
+    it 'does not show an edit link' do
+      visit root_path
+      expect(page).not_to have_link('Edit')
+    end
+  end
+
 end
