@@ -15,13 +15,8 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/new
-  # todo
-  # I can probably get rid of the user_id part
-  # wait for integration test pass
   def new
-    @post = Post.new(
-      user_id: params[:user_id]
-    )
+    @post = Post.new
   end
 
   # GET /posts/1/edit
