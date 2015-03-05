@@ -26,22 +26,23 @@ describe 'deleting a post', type: :feature do
   end
 
   describe 'without ownership' do
-    
-    it 'should show an error and not delete the post' do
+
+    before(:each) do
 
       click_link('Sign out')
-      
+
       click_link('Sign up') 
       page.fill_in('Email', with: 'second@gmail.com')
       page.fill_in('Password', with: 'foobarfoo')
       page.fill_in('Password confirmation', with: 'foobarfoo')
       page.click_button('Sign up')
 
-      #page.click_link('Destroy')
-      visit destroy_post_path(1)
-      expect(page).to have_content('A title')
-      expect(page).to have_content("You don't have permission to do this")
 
+    end
+    
+    it 'should not have a delete post link' do
+
+      expect(page).not_to have_link('Destroy')
     end
   end
 end
