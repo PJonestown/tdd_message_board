@@ -58,12 +58,7 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
-    #@post.destroy
-    #user = current_user.posts.find(params[:id])
-    #@post.destroy
     if @post.user == current_user
       @post.destroy
       respond_to do |format|
@@ -72,7 +67,6 @@ class PostsController < ApplicationController
       end
     else
       redirect_to root_path
-      #flash[:danger] = "You don't have permission to do this"
       flash[:alert] = "You don't have permission to do this"
     end
   end
