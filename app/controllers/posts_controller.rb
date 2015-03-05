@@ -2,6 +2,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :except =>[:index]
 
+  #for when users try to edit posts not belonging to them
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:alert] = "You don't have permission to do this"
+    redirect_to root_url
+  end
+
   # GET /posts
   # GET /posts.json
   def index
@@ -21,6 +27,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+
     @post = current_user.posts.find(params[:id])
   end
 
