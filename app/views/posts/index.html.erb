@@ -31,8 +31,7 @@
       <tr>
         <td><%= link_to post.title, post_path(post) %></td>
         <td><%= post.body %></td>
-        <% user = post.user %>
-        <td><%= user.email %></td>
+        <td><%= post.user %></td>
         <td><%= link_to 'Show', post %></td>
 
         <% if current_user == post.user %>
