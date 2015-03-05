@@ -37,7 +37,8 @@ describe 'deleting a post', type: :feature do
       page.fill_in('Password confirmation', with: 'foobarfoo')
       page.click_button('Sign up')
 
-      page.click_link('Destroy')
+      #page.click_link('Destroy')
+      visit destroy_post_path(1)
       expect(page).to have_content('A title')
       expect(page).to have_content("You don't have permission to do this")
 

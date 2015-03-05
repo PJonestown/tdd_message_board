@@ -44,6 +44,11 @@ describe 'editing a post', type: :feature do
       visit root_path
       expect(page).not_to have_link('Edit')
     end
+
+    it 'does not edit post' do
+      visit edit_post_path(2)
+    end
+
   end
 
 end

@@ -21,6 +21,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    @post = current_user.posts.find(params[:id])
   end
 
   # POST /posts
@@ -54,6 +55,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post = current_user.posts.find(params[:id])
     if @post.user == current_user
       @post.destroy
       respond_to do |format|
