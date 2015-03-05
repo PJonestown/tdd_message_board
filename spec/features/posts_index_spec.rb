@@ -47,6 +47,7 @@ describe 'the posts index', type: :feature do
     expect(current_path).to eq(posts_path)
     expect(page).not_to have_content('error')
     expect(page).to have_content('barfoho')
+    expect(page).to have_content('test@gmail.com')
   end
 
 end

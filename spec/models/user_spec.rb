@@ -14,4 +14,8 @@ RSpec.describe User, type: :model do
   it 'has an array of posts' do
     expect(@user.posts).to eq([])
   end
+
+  it "convert to a string with email" do
+    expect(@user.to_s).to eq('user@example.com')
+  end
 end
