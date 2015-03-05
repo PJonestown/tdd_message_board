@@ -34,7 +34,7 @@ describe 'editing a post', type: :feature do
       click_link('Sign out')
       
       page.click_link('Sign up')
-      page.fill_in('Email', with: 'first@gmail.com')
+      page.fill_in('Email', with: 'second@gmail.com')
       page.fill_in('Password', with: 'foobarfoo')
       page.fill_in('Password confirmation', with: 'foobarfoo')
       page.click_button('Sign up')
@@ -46,7 +46,9 @@ describe 'editing a post', type: :feature do
     end
 
     it 'does not edit post' do
-      visit edit_post_path(2)
+      visit edit_post_path(1)
+      expect(current_path).to eq(root_path)
+      expect(page).to have_content("You don't have permission to do this")
     end
 
   end
