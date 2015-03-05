@@ -32,9 +32,9 @@ describe 'the posts index', type: :feature do
   end
 
   it 'Signs up new user and creates new post' do
-    #todo
-    #this should click a button for sign up
-    visit new_user_registration_path
+
+    visit root_path
+    click_link('Sign up')
     page.fill_in('Email', with: 'test@gmail.com')
     page.fill_in('Password', with: 'mypassword')
     page.fill_in('Password confirmation', with: 'mypassword')
