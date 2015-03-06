@@ -33,5 +33,9 @@ RSpec.describe Post, type: :model do
     @post.user_id = nil
     expect(@post).not_to be_valid
   end
+
+  it "has an array of comments" do
+    expect(@post.comments).to eq([])
+  end
   
 end
