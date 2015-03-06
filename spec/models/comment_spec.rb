@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe 'comment' do
+
+    it 'should have a body' do
+      @comment = Comment.new(body: nil)
+      expect(@comment).not_to be_valid
+    end
+  end
 end
