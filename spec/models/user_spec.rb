@@ -18,4 +18,8 @@ RSpec.describe User, type: :model do
   it "convert to a string with email" do
     expect(@user.to_s).to eq('user@example.com')
   end
+
+  it "has an array of comments" do
+    expect(@user.comments).to eq([])
+  end
 end
