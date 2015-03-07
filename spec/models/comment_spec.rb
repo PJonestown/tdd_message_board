@@ -31,5 +31,10 @@ RSpec.describe Comment, type: :model do
       @comment.user = nil
       expect(@comment).not_to be_valid
     end
+
+    it 'should be invalid if body longer than 1000 characters' do
+      @comment.body = 'a' * 1001
+      expect(@comment).not_to be_valid
+    end
   end
 end
