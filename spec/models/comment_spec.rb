@@ -4,8 +4,21 @@ RSpec.describe Comment, type: :model do
 
   describe 'comment' do
 
+    before do
+      #@comment = FactoryGirl.create(:comment)
+      user = FactoryGirl.create(:user)
+      @comment = user.comments.create(
+        body: "This is my hacky comment",
+        commentable_type: "Post"
+      )
+    end
+
+    it 'should be valid' do
+      expect(@comment).to be_valid
+    end
+
     it 'should have a body' do
-      @comment = Comment.new(body: nil)
+      @comment.body = nil
       expect(@comment).not_to be_valid
     end
   end
