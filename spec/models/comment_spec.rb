@@ -26,5 +26,10 @@ RSpec.describe Comment, type: :model do
       @comment.commentable_type = nil
       expect(@comment).not_to be_valid
     end
+
+    it 'should belong to a user' do
+      @comment.user = nil
+      expect(@comment).not_to be_valid
+    end
   end
 end
