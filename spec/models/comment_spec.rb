@@ -21,5 +21,10 @@ RSpec.describe Comment, type: :model do
       @comment.body = nil
       expect(@comment).not_to be_valid
     end
+
+    it 'should have a commentable_type' do
+      @comment.commentable_type = nil
+      expect(@comment).not_to be_valid
+    end
   end
 end
